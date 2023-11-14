@@ -2,15 +2,21 @@ import Navbar from "./components/Navbar";
 import { useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import {AiFillPlusCircle} from "react-icons/ai"
+import {collection } from "firebase/firestore";
 const App = () => {
  const [contacts, setContact] = useState([]);
 
  useEffect(()=>{
     const getContacts = async () => {
         try{
-          const contactsCollection = collection();
-        }catch (error) {}
-     } ;
+          const contactsRef = collection(db, "Contacts");
+          const contactsSnapshot = await getDocs(contacstRef);
+          console.log(contactsSnapshot);
+          const contactLists = contactsSnapshot.docs.map((doc) =>doc.data())
+        }catch (error) {
+            console.log(error);
+        }
+     };
     getContacts();
  },[]);
 
