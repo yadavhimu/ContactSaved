@@ -17,6 +17,7 @@ const App = () => {
             console.log(error);
         }
      };
+     
     getContacts();
  },[]);
 
